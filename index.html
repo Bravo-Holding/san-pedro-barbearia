@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>San Pedro Barbearia — Reduto, Belém/PA</title>
+  <meta name="description" content="Barbearia premium no Reduto, Belém. Barbaterapia, selagem, pigmentação e mais 25 serviços. Agendamento online pelo AppBarber.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="San Pedro Barbearia — Reduto, Belém/PA">
+  <meta property="og:description" content="Barbearia premium no Reduto. Barbaterapia, selagem, pigmentação. Agendamento online.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <!-- [PENDENTE] og:image — URL absoluta 1200x630, Pedro deve fornecer -->
+  <!-- <meta property="og:image" content="https://DOMINIO/og-image.jpg"> -->
+  <!-- [PENDENTE] og:url — domínio final -->
+  <!-- <meta property="og:url" content="https://DOMINIO/"> -->
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23111111'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='13' fill='%23C9A84C'>SP</text></svg>">
+
+  <!-- Google Fonts: Oswald + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+
+  <!-- [PENDENTE] GA4 — substituir G-XXXXXXXXXX pelo ID real do Pedro -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+
+  <!-- [PENDENTE] Meta Pixel — confirmar com Pedro se tem conta Meta Ads -->
+  <!--
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){...};
+  fbq('init', 'SEU_PIXEL_ID');
+  fbq('track', 'PageView');
+  </script>
+  -->
+
+  <!-- CSS não-crítico (abaixo do fold) -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- CSS crítico inline — acima do fold: tokens, reset, navbar, hero, botões -->
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --color-bg:         #111111;
+      --color-bg-alt:     #1A1A1A;
+      --color-bg-card:    #161616;
+      --color-bg-card-hover: #191919;
+      --color-border:     #2A2A2A;
+      --color-gold:       #C9A84C;
+      --color-gold-hover: #d9b860;
+      --color-gold-dim:   rgba(201, 168, 76, 0.12);
+      --color-text:       #F0EDE8;
+      --color-muted:      #888888;
+      --color-black:      #111111;
+
+      --font-display:     'Oswald', sans-serif;
+      --font-body:        'Inter', sans-serif;
+
+      --space-xs:   0.5rem;
+      --space-sm:   1rem;
+      --space-md:   1.5rem;
+      --space-lg:   2.5rem;
+      --space-xl:   4rem;
+      --space-2xl:  6rem;
+
+      --radius-sm:  4px;
+      --radius-md:  8px;
+      --radius-lg:  16px;
+      --radius-full: 9999px;
+
+      --transition: 200ms ease;
+      --transition-slow: 350ms ease;
+
+      --z-nav:    50;
+      --z-sticky: 40;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ============================================================
+       UTILITY
+    ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 1.25rem;
+    }
+
+    .section {
+      padding-block: var(--space-xl);
+    }
+
+    .section--alt {
+      background-color: var(--color-bg-alt);
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: var(--space-sm);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: var(--color-text);
+      line-height: 1.15;
+      max-width: 640px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    /* Fade-in animation (triggered by IntersectionObserver) */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in:nth-child(1) { transition-delay: 0ms; }
+    .fade-in:nth-child(2) { transition-delay: 80ms; }
+    .fade-in:nth-child(3) { transition-delay: 160ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      border: none;
+      transition: background-color var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn--primary {
+      background-color: var(--color-gold);
+      color: var(--color-black);
+    }
+
+    .btn--primary:hover {
+      background-color: var(--color-gold-hover);
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.25);
+    }
+
+    .btn--primary:focus-visible {
+      outline: 2px solid var(--color-gold);
+      outline-offset: 3px;
+    }
+
+    .btn--outline {
+      background-color: var(--color-black);
+      color: var(--color-gold);
+      border: 1px solid var(--color-gold);
+    }
+
+    .btn--outline:hover {
+      background-color: var(--color-gold-dim);
+    }
+
+    .btn--outline:focus-visible {
+      outline: 2px solid var(--color-gold);
+      outline-offset: 3px;
+    }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: var(--z-nav);
+      background-color: rgba(17, 17, 17, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--transition-slow), background-color var(--transition-slow);
+    }
+
+    .navbar.scrolled {
+      border-bottom-color: var(--color-border);
+      background-color: rgba(17, 17, 17, 0.98);
+    }
+
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      height: 64px;
+    }
+
+    .navbar__logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--color-gold);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .navbar__contact {
+      display: none;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--color-muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color var(--transition);
+      cursor: pointer;
+    }
+
+    .navbar__contact:hover {
+      color: var(--color-text);
+    }
+
+    .navbar__contact svg {
+      width: 15px;
+      height: 15px;
+      color: var(--color-gold);
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 768px) {
+      .navbar__contact {
+        display: flex;
+      }
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: var(--space-xl);
+      padding-top: 64px;
+      overflow: hidden;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(0,0,0,0.75) 0%,
+        rgba(0,0,0,0.55) 50%,
+        rgba(0,0,0,0.82) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero__eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background-color: var(--color-gold);
+    }
+
+    .hero__headline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 6vw, 3.75rem);
+      line-height: 1.05;
+      color: var(--color-text);
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+    }
+
+    .hero__headline em {
+      font-style: normal;
+      color: var(--color-gold);
+    }
+
+    .hero__sub {
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      color: rgba(240, 237, 232, 0.8);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .hero__whatsapp {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--color-muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color var(--transition);
+      cursor: pointer;
+    }
+
+    .hero__whatsapp:hover {
+      color: var(--color-text);
+    }
+
+    .hero__whatsapp svg {
+      width: 16px;
+      height: 16px;
+      color: var(--color-gold);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" role="banner" id="navbar">
+    <div class="container">
+      <nav class="navbar__inner" aria-label="Navegação principal">
+        <a href="#" class="navbar__logo" aria-label="San Pedro Barbearia — página inicial">San Pedro</a>
+
+        <a href="https://wa.me/5591984902538" class="navbar__contact" aria-label="Ligar no WhatsApp (91) 98490-2538" target="_blank" rel="noopener noreferrer">
+          <i data-lucide="phone" aria-hidden="true"></i>
+          (91) 98490-2538
+        </a>
+
+        <a
+          href="https://sites.appbarber.com.br/sanpedrobarbearia"
+          class="btn btn--primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Agendar horário no AppBarber"
+        >
+          Agendar
+        </a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <!-- [PENDENTE] src: substituir Unsplash por foto real da barbearia quando Pedro enviar -->
+  <section class="hero" aria-label="Apresentação da barbearia">
+    <div class="hero__bg">
+      <img
+        src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1920&q=80"
+        alt="Barbeiro realizando atendimento em ambiente premium"
+        width="1920"
+        height="1080"
+        loading="eager"
+        fetchpriority="high"
+      >
+    </div>
+    <div class="hero__overlay" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__eyebrow" aria-hidden="true">Reduto, Belém/PA</div>
+        <h1 class="hero__headline">
+          Corte todo mundo faz.<br>
+          <em>Técnica</em> é outra coisa.
+        </h1>
+        <p class="hero__sub">
+          Na San Pedro, você sabe o que vai receber antes de sentar na cadeira. Cada serviço tem processo e produto específico pra ele.
+        </p>
+        <div class="hero__actions">
+          <a
+            href="https://sites.appbarber.com.br/sanpedrobarbearia"
+            class="btn btn--primary"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Agendar horário na San Pedro Barbearia"
+          >
+            <i data-lucide="calendar" aria-hidden="true"></i>
+            Agendar agora
+          </a>
+          <a href="https://wa.me/5591984902538" class="hero__whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contato via WhatsApp">
+            <i data-lucide="message-circle" aria-hidden="true"></i>
+            (91) 98490-2538
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CREDENCIAIS RÁPIDAS -->
+  <section class="creds" aria-label="Números da barbearia">
+    <div class="container">
+      <div class="creds__grid">
+        <div class="creds__item fade-in" aria-label="3 anos ou mais no Reduto, Belém">
+          <div class="creds__number" aria-hidden="true">3+</div>
+          <div class="creds__label">Anos no Reduto, Belém</div>
+        </div>
+        <div class="creds__item fade-in" aria-label="Nota 5 estrelas no AppBarber">
+          <div class="creds__number" aria-hidden="true">5.0</div>
+          <div class="creds__label">Nota no AppBarber</div>
+        </div>
+        <div class="creds__item fade-in" aria-label="25 serviços disponíveis">
+          <div class="creds__number" aria-hidden="true">25</div>
+          <div class="creds__label">Serviços disponíveis</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SERVIÇOS PREMIUM -->
+  <section class="section" aria-labelledby="services-title">
+    <div class="container">
+      <div class="services__header">
+        <p class="section-label" aria-hidden="true">Serviços</p>
+        <h2 class="section-title" id="services-title">O que separa a San Pedro de barbearia comum</h2>
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+
+      <div class="services__grid">
+        <article class="service-card fade-in" aria-label="Serviço: Barbaterapia">
+          <div class="service-card__icon" aria-hidden="true">
+            <i data-lucide="sparkles"></i>
+          </div>
+          <h3 class="service-card__title">Barbaterapia</h3>
+          <p class="service-card__body">
+            Esfoliação, vapor de ozônio, óleos, balm e alinhamento nessa ordem. Não é ritual, é processo. E você sente a diferença por dias depois que sai.
+          </p>
+        </article>
+
+        <article class="service-card fade-in" aria-label="Serviço: Selagem">
+          <div class="service-card__icon" aria-hidden="true">
+            <i data-lucide="layers"></i>
+          </div>
+          <h3 class="service-card__title">Selagem</h3>
+          <p class="service-card__body">
+            Alisamento americano em etapas. O cabelo fica com volume controlado e textura definida, sem parecer que você passou tinta. Dura semanas.
+          </p>
+        </article>
+
+        <article class="service-card fade-in" aria-label="Serviço: Pigmentação para Barba">
+          <div class="service-card__icon" aria-hidden="true">
+            <i data-lucide="droplets"></i>
+          </div>
+          <h3 class="service-card__title">Pigmentação para Barba</h3>
+          <p class="service-card__body">
+            Falha ou tom desigual na barba se resolve em 20 minutos. O resultado é uniforme, com densidade. Discreto o bastante pra parecer que sempre foi assim.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA INTERMEDIÁRIO -->
+  <section class="cta-mid" aria-label="Call to action intermediário">
+    <div class="container">
+      <div class="cta-mid__inner">
+        <p class="cta-mid__text">Chegou a hora de parar de testar.</p>
+        <a
+          href="https://sites.appbarber.com.br/sanpedrobarbearia"
+          class="btn btn--outline"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Escolher horário na San Pedro Barbearia"
+        >
+          <i data-lucide="clock" aria-hidden="true"></i>
+          Escolher meu horário
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- QUEM É PEDRO -->
+  <!-- [PENDENTE] pedro__avatar: substituir "P" por <img> quando Pedro enviar foto -->
+  <section class="section section--alt" aria-labelledby="pedro-title">
+    <div class="container">
+      <div class="pedro__inner">
+        <div class="pedro__avatar" aria-hidden="true">P</div>
+        <div>
+          <p class="section-label" aria-hidden="true">O barbeiro</p>
+          <h2 class="pedro__name" id="pedro-title">Pedro Ribeiro</h2>
+          <div class="divider" aria-hidden="true"></div>
+          <p class="pedro__bio">
+            Pedro Ribeiro trabalha no Reduto há mais de 3 anos. A clientela é de gente que volta e volta porque o resultado não depende do dia. Ele começou no básico e foi adicionando técnicas que a maioria das barbearias de Belém não oferece. Cada serviço tem procedimento, produto certo. O que sai é previsível, e isso não é pouco.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PROVA SOCIAL — DEPOIMENTOS -->
+  <!-- [PENDENTE] Substituir por depoimentos reais antes de escalar tráfego pago -->
+  <section class="section" aria-labelledby="reviews-title">
+    <div class="container">
+      <div class="reviews__header">
+        <p class="section-label" aria-hidden="true">Depoimentos</p>
+        <h2 class="section-title" id="reviews-title">Quem já veio conta</h2>
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+
+      <div class="reviews__grid">
+        <article class="review-card fade-in" aria-label="Depoimento de Marcus Ferreira">
+          <div class="review-card__quote" aria-hidden="true">"</div>
+          <p class="review-card__text">
+            Achei que barbearia era tudo igual. Depois da barbaterapia lá, não consegui mais ir em outro lugar. O acabamento da barba ficou num nível que eu nunca tinha visto.
+          </p>
+          <div class="review-card__footer">
+            <div class="review-card__avatar" aria-hidden="true">M</div>
+            <div>
+              <div class="review-card__name">Marcus Ferreira</div>
+              <div class="review-card__detail">34 anos</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card fade-in" aria-label="Depoimento de Rafael Monteiro">
+          <div class="review-card__quote" aria-hidden="true">"</div>
+          <p class="review-card__text">
+            O preço assusta antes de ir. Depois você entende. Fiz o combo com selagem e o resultado durou semanas. No final sai mais barato do que ficar rodando em barbearia ruim.
+          </p>
+          <div class="review-card__footer">
+            <div class="review-card__avatar" aria-hidden="true">R</div>
+            <div>
+              <div class="review-card__name">Rafael Monteiro</div>
+              <div class="review-card__detail">29 anos</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card fade-in" aria-label="Depoimento de Carlos Augusto">
+          <div class="review-card__quote" aria-hidden="true">"</div>
+          <p class="review-card__text">
+            Levo meu filho desde os 2 anos. Pedro sabe lidar com criança. Os dois saímos bem. Hoje meu filho que pede pra ir.
+          </p>
+          <div class="review-card__footer">
+            <div class="review-card__avatar" aria-hidden="true">C</div>
+            <div>
+              <div class="review-card__name">Carlos Augusto</div>
+              <div class="review-card__detail">41 anos</div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div>
+        <div class="reviews__badge" role="img" aria-label="5 estrelas no AppBarber">
+          <strong>5.0</strong>
+          <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>no AppBarber</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TABELA DE PREÇOS -->
+  <section class="section section--alt" aria-labelledby="prices-title">
+    <div class="container">
+      <div class="prices__header">
+        <p class="section-label" aria-hidden="true">Valores</p>
+        <h2 class="section-title" id="prices-title">Serviços e valores</h2>
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+
+      <table class="prices__table" aria-label="Tabela de preços dos serviços">
+        <caption class="sr-only">Lista de serviços com respectivos preços</caption>
+        <thead class="sr-only">
+          <tr>
+            <th scope="col">Serviço</th>
+            <th scope="col">Preço</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="fade-in"><td>Corte de cabelo</td><td>R$ 60</td></tr>
+          <tr class="fade-in"><td>Barba</td><td>R$ 45</td></tr>
+          <tr class="fade-in"><td>Combo cabelo + barba</td><td>R$ 100</td></tr>
+          <tr class="fade-in"><td>Barbaterapia</td><td>R$ 70</td></tr>
+          <tr class="fade-in"><td>Pigmentação de barba</td><td>R$ 40</td></tr>
+          <tr class="fade-in"><td>Combo premium (cabelo + barba + hidratação)</td><td>R$ 125</td></tr>
+        </tbody>
+      </table>
+
+      <a
+        href="https://sites.appbarber.com.br/sanpedrobarbearia"
+        class="prices__link"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Ver cardápio completo de serviços no AppBarber"
+      >
+        Ver cardápio completo
+        <i data-lucide="arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- LOCALIZAÇÃO + HORÁRIOS + CTA FINAL -->
+  <section class="section" aria-labelledby="location-title" id="cta-final">
+    <div class="container">
+      <div class="prices__header" style="margin-bottom: var(--space-lg)">
+        <p class="section-label" aria-hidden="true">Onde estamos</p>
+        <h2 class="section-title" id="location-title">Reduto, Belém/PA</h2>
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+
+      <div class="location__inner">
+        <div class="location__map fade-in">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7!2d-48.4911!3d-1.4558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sRua%20Boaventura%20da%20Silva%2C%201597%2C%20Reduto%2C%20Bel%C3%A9m%2C%20PA!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
+            title="Localização da San Pedro Barbearia — Rua Boaventura da Silva, 1597, Reduto, Belém/PA"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+        <div class="fade-in">
+          <h3 class="location__info-title">Endereço</h3>
+          <p class="location__info-body">
+            Rua Boaventura da Silva, 1597<br>
+            Reduto, Belém/PA
+          </p>
+
+          <h3 class="location__info-title">WhatsApp</h3>
+          <p class="location__info-body">
+            <a href="https://wa.me/5591984902538" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp da San Pedro Barbearia">
+              (91) 98490-2538
+            </a>
+          </p>
+
+          <h3 class="location__info-title">Horários</h3>
+          <p class="location__info-body">
+            Segunda a sexta: 09h–12h / 14h–20h<br>
+            Sábado: 09h–12h / 13h30–18h<br>
+            Domingo: fechado
+          </p>
+
+          <div class="location__cta">
+            <p class="location__cta-text">
+              <strong>Barbearia que entrega o que promete.</strong> Você marca online.
+            </p>
+            <a
+              href="https://sites.appbarber.com.br/sanpedrobarbearia"
+              class="btn btn--primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Reservar horário na San Pedro Barbearia pelo AppBarber"
+            >
+              <i data-lucide="calendar-check" aria-hidden="true"></i>
+              Reservar meu horário
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <!-- [PENDENTE] Facebook: substituir href por URL real da página do Pedro -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__logo" aria-label="San Pedro Barbearia">San Pedro</div>
+
+        <nav class="footer__links" aria-label="Links de redes sociais">
+          <a href="https://instagram.com/san_pedrobarbearia" class="footer__link" target="_blank" rel="noopener noreferrer" aria-label="Instagram da San Pedro Barbearia">
+            <i data-lucide="instagram" aria-hidden="true"></i>
+            Instagram
+          </a>
+          <a href="https://wa.me/5591984902538" class="footer__link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp da San Pedro Barbearia">
+            <i data-lucide="message-circle" aria-hidden="true"></i>
+            WhatsApp
+          </a>
+          <a href="https://facebook.com" class="footer__link" target="_blank" rel="noopener noreferrer" aria-label="Facebook da San Pedro Barbearia">
+            <i data-lucide="facebook" aria-hidden="true"></i>
+            Facebook
+          </a>
+        </nav>
+
+        <p class="footer__copy">
+          &copy; 2025 San Pedro Barbearia. Todos os direitos reservados.<br>
+          Reduto, Belém/PA
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- STICKY CTA — Mobile -->
+  <div class="sticky-cta" id="sticky-cta" role="region" aria-label="Agendamento rápido" aria-live="polite">
+    <a
+      href="https://sites.appbarber.com.br/sanpedrobarbearia"
+      class="btn btn--primary"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Agendar horário na San Pedro Barbearia"
+    >
+      <i data-lucide="calendar" aria-hidden="true"></i>
+      Agendar agora
+    </a>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
+
+    const navbar = document.getElementById('navbar');
+    let ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(function () {
+          navbar.classList.toggle('scrolled', window.scrollY > 32);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      );
+      document.querySelectorAll('.fade-in').forEach(function (el) { observer.observe(el); });
+    } else {
+      document.querySelectorAll('.fade-in').forEach(function (el) { el.classList.add('visible'); });
+    }
+
+    const stickyCta = document.getElementById('sticky-cta');
+    const ctaFinal = document.getElementById('cta-final');
+    if (stickyCta && ctaFinal && 'IntersectionObserver' in window) {
+      new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            stickyCta.classList.toggle('hidden', entry.isIntersecting);
+          });
+        },
+        { threshold: 0.2 }
+      ).observe(ctaFinal);
+    }
+  </script>
+
+</body>
+</html>

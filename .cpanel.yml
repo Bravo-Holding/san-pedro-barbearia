@@ -1,0 +1,11 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=$HOME/public_html/clients/san-pedro-barbearia
+    - /bin/cp index.html $DEPLOYPATH/index.html
+    - /bin/cp style.css $DEPLOYPATH/style.css
+    # [PENDENTE] adicionar assets quando Pedro enviar:
+    # - /bin/cp hero-bg.jpg $DEPLOYPATH/hero-bg.jpg
+    # - /bin/cp pedro-ribeiro.jpg $DEPLOYPATH/pedro-ribeiro.jpg
+    # - /bin/cp og-image.jpg $DEPLOYPATH/og-image.jpg
+    # - /bin/cp -r favicon/ $DEPLOYPATH/favicon/
