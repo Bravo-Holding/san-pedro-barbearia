@@ -8,5 +8,5 @@ deployment:
     # [PENDENTE] adicionar assets quando Pedro enviar:
     # - /bin/cp hero-bg.jpg $DEPLOYPATH/hero-bg.jpg
     # - /bin/cp pedro-ribeiro.jpg $DEPLOYPATH/pedro-ribeiro.jpg
-    # - /bin/cp og-image.jpg $DEPLOYPATH/og-image.jpg
+    - /bin/cp og-image.jpg $DEPLOYPATH/og-image.jpg
     # - /bin/cp -r favicon/ $DEPLOYPATH/favicon/
