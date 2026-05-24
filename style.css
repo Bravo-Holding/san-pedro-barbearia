@@ -187,17 +187,12 @@
   width: 140px;
   height: 140px;
   border-radius: var(--radius-full);
-  background-color: var(--color-bg-alt);
   border: 2px solid var(--color-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 3rem;
-  color: var(--color-gold);
+  object-fit: cover;
+  object-position: center top;
   flex-shrink: 0;
   margin-inline: auto;
+  display: block;
 }
 
 @media (min-width: 768px) {
